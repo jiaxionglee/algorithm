@@ -1,16 +1,10 @@
 package sort;
 
 /**
+ * 冒泡排序
  * Created by jiaxiong on 2019-03-19 08:25
  */
 public class BubbleSort {
-
-    private static void all(int i, int[] arr) {
-        System.out.print("\n" + "第" + i + "次排序结果：");
-        for (int num : arr) {
-            System.out.print(num + " ");
-        }
-    }
 
     //基本冒泡排序
     public static int[] bubbleSort(int[] arr) {
@@ -24,7 +18,6 @@ public class BubbleSort {
                     arr[j + 1] = temp;
                 }
             }
-            all(i, arr);
         }
         return arr;
     }
@@ -46,7 +39,6 @@ public class BubbleSort {
             if (flag) {
                 break;
             }
-            all(i, arr);
         }
         return arr;
     }
