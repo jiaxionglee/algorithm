@@ -7,31 +7,31 @@ package sort;
 public class BubbleSort {
 
     //基本冒泡排序
-    public static int[] bubbleSort(int[] arr) {
+    public static int[] bubbleSort(int[] array) {
         //外层循环控制排序趟数，-1少循环一次
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (int i = 0; i < array.length - 1; i++) {
             //内层循环控制每一趟排序多少次
-            for (int j = 0; j < arr.length - 1 - i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                 }
             }
         }
-        return arr;
+        return array;
     }
 
     //优化后的冒泡排序
-    public static int[] bubbleSort_op(int[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
+    public static int[] bubbleSort_op(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
             boolean flag = true;
             int temp;
-            for (int j = 0; j < arr.length - 1 - i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                     flag = false;
                 }
             }
@@ -40,7 +40,7 @@ public class BubbleSort {
                 break;
             }
         }
-        return arr;
+        return array;
     }
 
 }

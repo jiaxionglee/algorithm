@@ -6,21 +6,23 @@ package sort;
  */
 public class SelectionSort {
 
-    public static int[] selectionSort(int[] arrary) {
-        if (arrary.length == 0) {
-            return arrary;
+    public static int[] selectionSort(int[] array) {
+        if (array.length == 0) {
+            return array;
         }
-        for (int i = 0; i < arrary.length-1; i++) {
+        //外层循环控制需要排序的趟数
+        for (int i = 0; i < array.length-1; i++) {
             int minIndex = i;
-            for (int j = i; j < arrary.length; j++) {
-                if (arrary[j] < arrary[minIndex]) {
+            for (int j = i; j < array.length; j++) {
+                //找到最小的数
+                if (array[j] < array[minIndex]) {
                     minIndex = j;
                 }
             }
-            int tmp = arrary[minIndex];
-            arrary[minIndex] = arrary[i];
-            arrary[i] = tmp;
+            int tmp = array[minIndex];
+            array[minIndex] = array[i];
+            array[i] = tmp;
         }
-        return arrary;
+        return array;
     }
 }
