@@ -5,11 +5,6 @@ import java.util.HashMap;
 import java.util.Stack;
 
 /**
- * https://blog.csdn.net/fightforyourdream/article/details/16353519
- * http://blog.csdn.net/luckyxiaoqiang/article/details/7393134 轻松搞定面试中的链表题目
- * http://www.cnblogs.com/jax/archive/2009/12/11/1621504.html 算法大全（1）单链表
- * <p>
- * 目录：
  * 1. 求单链表中结点的个数: getListLength
  * 2. 将单链表反转: reverseList（遍历），reverseListRec（递归）
  * 3. 查找单链表中的倒数第K个结点（k > 0）: reGetKthListNode
@@ -379,7 +374,6 @@ public class LinkedList {
             n1 = n1.next;
             n2 = n2.next;
         }
-
         return n1;
     }
 
@@ -405,8 +399,7 @@ public class LinkedList {
         }
 
         // 其次，相遇点离环的开始处的距离等于链表头到环开始处的距离，
-        // 这样，我们把慢指针放在链表头，快指针保持在相遇点，然后
-        // 同速度前进，再次相遇点就是环的开始处！
+        // 把慢指针指向头节点，快指针保持在相遇点，然后同速度前进，再次相遇点就是环的开始处！
         slow = head;
         while (slow != fast) {
             slow = slow.next;
@@ -418,7 +411,7 @@ public class LinkedList {
 
     /**
      * 求进入环中的第一个节点 用HashMap做
-     * 一个无环的链表，它每个结点的地址都是不一样的。
+     * 无环链表，每个结点的地址都是不一样的。
      * 有环链表，指针沿着链表移动时会指向一个已经出现过的地址
      * 以地址为哈希表的键值，每出现一个地址，就将该键值对应的实值置为true。
      */
@@ -426,7 +419,7 @@ public class LinkedList {
         HashMap<ListNode, Boolean> map = new HashMap<ListNode, Boolean>();
         ListNode res = head;
         while (res != null) {
-            if (map.get(res)) {
+            if (map.get(res) != null) {
                 return res;              // 这个地址之前已经出现过了，就是环的开始处
             } else {
                 map.put(res, true);

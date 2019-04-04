@@ -5,7 +5,7 @@ package binarytree;
  */
 public class Pair {
     int height;                // 树的高度
-    boolean isFull;        // 是否是个满树
+    boolean isFull;            // 是否是个满树
 
     public Pair(int height, boolean isFull) {
         this.height = height;

@@ -3,6 +3,8 @@ package str;
 import java.util.Stack;
 
 /**
+ * 判断字符串中的"()"、"[]"、"{}"是否匹配
+ * 利用栈实现
  * Created by jiaxiong on 2019-03-22 16:06
  */
 public class Match {
