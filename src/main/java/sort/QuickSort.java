@@ -8,6 +8,7 @@ package sort;
  * 3）从j开始向前搜索，即由后开始向前搜索(j--)，找到第一个小于key的值A[j]，将A[j]和A[i]的值交换；
  * 4）从i开始向后搜索，即由前开始向后搜索(i++)，找到第一个大于等于key的A[i]，将A[i]和A[j]的值交换；
  * 5）重复第3、4步，直到i=j。
+ * <p>
  * Created by jiaxiong on 2019-03-20 11:14
  */
 public class QuickSort {

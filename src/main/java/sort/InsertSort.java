@@ -9,6 +9,7 @@ package sort;
  * 4）重复步骤3，直到找到已排序的元素小于或者等于新元素的位置
  * 5）将新元素插入到下一位置中
  * 6）重复步骤2~5
+ * <p>
  * Created by jiaxiong on 2019-03-20 10:43
  */
 public class InsertSort {

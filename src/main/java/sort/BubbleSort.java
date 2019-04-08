@@ -7,6 +7,7 @@ package sort;
  * 2）对每一对相邻元素做同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。
  * 3）针对所有的元素重复以上的步骤，除了第一个。
  * 4）持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
+ * <p>
  * Created by jiaxiong on 2019-03-19 08:25
  */
 public class BubbleSort {
@@ -28,7 +29,7 @@ public class BubbleSort {
     }
 
     //优化后的冒泡排序
-    public static int[] bubbleSort_op(int[] array) {
+    public static int[] bubbleSort2(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             boolean flag = true;
             int temp;
