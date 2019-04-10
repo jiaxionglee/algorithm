@@ -9,7 +9,7 @@ import java.util.Stack;
  */
 public class Match {
 
-    private static boolean isMatch(String s) {
+    public static boolean isMatch(String s) {
         Stack<Character> sc = new Stack<Character>();
         char[] array = s.toCharArray();
 
@@ -29,6 +29,7 @@ public class Match {
                 }
             }
         }
+        // 如果为空表示匹配
         return sc.empty();
     }
 }
