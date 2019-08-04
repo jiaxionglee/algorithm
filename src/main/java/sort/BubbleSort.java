@@ -8,11 +8,15 @@ package sort;
  * 3）针对所有的元素重复以上的步骤，除了第一个。
  * 4）持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
  * <p>
- * Created by jiaxiong on 2019-03-19 08:25
+ *
+ * @author jiaxiong
+ * @date 2019-03-19 08:25
  */
 public class BubbleSort {
 
-    //基本冒泡排序
+    /**
+     * 基本冒泡排序
+     */
     public static int[] bubbleSort(int[] array) {
         //外层循环控制排序趟数，-1少循环一次
         for (int i = 0; i < array.length - 1; i++) {
@@ -28,7 +32,9 @@ public class BubbleSort {
         return array;
     }
 
-    //优化后的冒泡排序
+    /**
+     * 优化后的冒泡排序
+     */
     public static int[] bubbleSort2(int[] array) {
         for (int i = 0; i < array.length - 1; i++) {
             boolean flag = true;

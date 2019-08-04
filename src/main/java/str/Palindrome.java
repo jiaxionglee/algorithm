@@ -3,7 +3,7 @@ package str;
 import java.util.HashSet;
 
 /**
- * 最长回文串
+ * 回文串
  *
  * @author jiaxiong
  * @date 2019-07-28 16:00

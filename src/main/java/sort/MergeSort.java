@@ -9,7 +9,9 @@ package sort;
  * 4）重复步骤3直到某一指针超出序列尾
  * 5）最后将另一序列剩下的所有元素直接复制到合并序列尾
  * <p>
- * Created by jiaxiong on 2019-04-01 17:52
+ *
+ * @author jiaxiong
+ * @date 2019-04-01 17:52
  */
 public class MergeSort {
 
@@ -57,16 +59,18 @@ public class MergeSort {
         int mid = size / (len << 1);
         int c = size & ((len << 1) - 1);
         // 归并到只剩一个有序集合的时候结束算法
-        if (mid == 0)
+        if (mid == 0) {
             return;
+        }
         // 进行一趟归并排序
         for (int i = 0; i < mid; ++i) {
             int s = i * 2 * len;
             merge(a, s, s + len, (len << 1) + s - 1);
         }
         // 将剩下的数和倒数一个有序集合归并
-        if (c != 0)
+        if (c != 0) {
             merge(a, size - c - 2 * len, size - c, size - 1);
+        }
         // 递归执行下一趟归并排序
         mergeSort(a, 2 * len);
     }

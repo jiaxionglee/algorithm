@@ -10,7 +10,9 @@ package sort;
  * 5）将新元素插入到下一位置中
  * 6）重复步骤2~5
  * <p>
- * Created by jiaxiong on 2019-03-20 10:43
+ *
+ * @author jiaxiong
+ * @date 2019-03-20 10:43
  */
 public class InsertSort {
 

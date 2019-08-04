@@ -1,7 +1,8 @@
 package binarytree;
 
 /**
- * Created by jiaxiong on 2019-03-28 23:13
+ * @author jiaxiong
+ * @date 2019-03-28 23:13
  */
 public class Result {
     int maxDistance;

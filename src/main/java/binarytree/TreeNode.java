@@ -1,7 +1,8 @@
 package binarytree;
 
 /**
- * Created by jiaxiong on 2019-03-28 19:24
+ * @author jiaxiong
+ * @date 2019-03-28 19:24
  */
 public class TreeNode {
 

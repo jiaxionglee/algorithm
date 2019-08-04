@@ -17,11 +17,15 @@ import java.util.Stack;
  * 10. 已知一个单链表中存在环，求进入环中的第一个节点: getFirstListNodeInCycle, getFirstListNodeInCycleHashMap
  * 11. 给出一单链表头指针pHead和一节点指针pToBeDeleted，O(1)时间复杂度删除节点pToBeDeleted: delete
  * <p>
- * Created by jiaxiong on 2019-03-28 13:18
+ *
+ * @author jiaxiong
+ * @date 2019-03-28 13:18
  */
 public class LinkedList {
 
-    // 遍历链表
+    /**
+     * 遍历链表
+     */
     public static ArrayList<Integer> printList(ListNode head) {
         ArrayList<Integer> res = new ArrayList<>();
         while (head != null) {
@@ -31,7 +35,9 @@ public class LinkedList {
         return res;
     }
 
-    // 求单链表中结点的个数，时间复杂度为 O(n)
+    /**
+     * 求单链表中结点的个数，时间复杂度为 O(n)
+     */
     public static int getListLength(ListNode head) {
         // 注意头结点为空情况
         if (head == null) {
@@ -46,22 +52,29 @@ public class LinkedList {
         return len;
     }
 
-    // 翻转链表（遍历），时复杂度为 O(n)
-    // 从头到尾遍历原链表，每遍历一个结点将其摘下放在新链表的最前端。
+    /**
+     * 翻转链表（遍历），时复杂度为 O(n)
+     * 从头到尾遍历原链表，每遍历一个结点将其摘下放在新链表的最前端。
+     */
     public static ListNode reverseList(ListNode head) {
         // 如果链表为空或只有一个节点，无需反转，直接返回原链表表头
         if (head == null || head.next == null) {
             return head;
         }
 
-        ListNode reHead = null;        // 反转后新链表指针
+        // 反转后新链表指针
+        ListNode reHead = null;
         ListNode cur = head;
 
         while (cur != null) {
-            ListNode preCur = cur;     // 用preCur保存住对要处理节点的引用
-            cur = cur.next;            // cur更新到下一个节点
-            preCur.next = reHead;      // 更新要处理节点的next引用
-            reHead = preCur;           // reHead指向要处理节点的前一个节点
+            // 用preCur保存住对要处理节点的引用
+            ListNode preCur = cur;
+            // cur更新到下一个节点
+            cur = cur.next;
+            // 更新要处理节点的next引用
+            preCur.next = reHead;
+            // reHead指向要处理节点的前一个节点
+            reHead = preCur;
         }
         return reHead;
     }
@@ -70,26 +83,27 @@ public class LinkedList {
      * 翻转递归（递归）
      * 递归的精髓在于你就默认reverseListRec已经成功帮你解决了子问题了！但别去想如何解决的
      * 现在只要处理当前ListNode和子问题之间的关系。最后就能圆满解决整个问题。
+     * <p>
+     * head
+     * 1 -> 2 -> 3 -> 4
+     * head
+     * 1--------------
+     * 4 -> 3 -> 2						// ListNode reHead = reverseListRec(head.next);
+     * reHead      head.next
+     * 4 -> 3 -> 2 -> 1					// head.next.next = head;
+     * reHead
+     * 4 -> 3 -> 2 -> 1 -> null			// head.next = null;
+     * reHead
      */
-	/*
-		 head
-			1 -> 2 -> 3 -> 4
-		 head
-			1--------------
-	               4 -> 3 -> 2						// ListNode reHead = reverseListRec(head.next);
-	           reHead      head.next
-	               4 -> 3 -> 2 -> 1					// head.next.next = head;
-	           reHead
-	               4 -> 3 -> 2 -> 1 -> null			// head.next = null;
-	           reHead
-	 */
     public static ListNode reverseListRec(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
         ListNode reHead = reverseListRec(head.next);
-        head.next.next = head;        // 把head接在reHead串的最后一个后面
-        head.next = null;             // 防止循环链表
+        // 把head接在reHead串的最后一个后面
+        head.next.next = head;
+        // 防止循环链表
+        head.next = null;
         return reHead;
     }
 
@@ -105,8 +119,10 @@ public class LinkedList {
             return null;
         }
 
-        ListNode q = head; // q在p前面  p--q
-        ListNode p = head; // p在q后面
+        // q在p前面  p--q
+        ListNode q = head;
+        // p在q后面
+        ListNode p = head;
 
         // 让q先移动距离k
         while (k > 1 && q != null) {
@@ -130,7 +146,7 @@ public class LinkedList {
     /**
      * 递归打印链表倒数第k位的值
      */
-    static int level = 0;
+    private static int level = 0;
 
     public static ListNode reGetKthListNodeRec(ListNode head, int k) {
 
@@ -155,7 +171,8 @@ public class LinkedList {
             return head;
         }
 
-        ListNode q = head;        // p---q
+        // p---q
+        ListNode q = head;
         ListNode p = head;
         // 前面指针每次走两步，直到指向最后一个结点，后面指针每次走一步
         while (q.next != null) {
@@ -174,7 +191,7 @@ public class LinkedList {
      * 也可以利用先反转再打印的两个方法
      */
     public static ArrayList<Integer> reversePrintListStack(ListNode head) {
-        Stack<ListNode> s = new Stack<ListNode>();
+        Stack<ListNode> s = new Stack<>();
         ListNode cur = head;
         while (cur != null) {
             s.push(cur);
@@ -213,12 +230,14 @@ public class LinkedList {
             return head1;
         }
 
-        ListNode mergeHead = null;
+        ListNode mergeHead;
         // 先确定下来mergeHead是在哪里
         if (head1.val < head2.val) {
             mergeHead = head1;
-            head1 = head1.next;                    // 跳过已经合并了的元素
-            mergeHead.next = null;                 // 断开mergeHead和后面的联系
+            // 跳过已经合并了的元素
+            head1 = head1.next;
+            // 断开mergeHead和后面的联系
+            mergeHead.next = null;
         } else {
             mergeHead = head2;
             head2 = head2.next;
@@ -228,10 +247,14 @@ public class LinkedList {
         ListNode mergeCur = mergeHead;
         while (head1 != null && head2 != null) {
             if (head1.val < head2.val) {
-                mergeCur.next = head1;              // 把找到较小的元素合并到merge中
-                head1 = head1.next;                 // 跳过已经合并了的元素
-                mergeCur = mergeCur.next;           // 找到下一个准备合并的元素
-                mergeCur.next = null;               // 断开mergeCur和后面的联系
+                // 把找到较小的元素合并到merge中
+                mergeCur.next = head1;
+                // 跳过已经合并了的元素
+                head1 = head1.next;
+                // 找到下一个准备合并的元素
+                mergeCur = mergeCur.next;
+                // 断开mergeCur和后面的联系
+                mergeCur.next = null;
             } else {
                 mergeCur.next = head2;
                 head2 = head2.next;
@@ -260,7 +283,7 @@ public class LinkedList {
             return head1;
         }
 
-        ListNode mergeHead = null;
+        ListNode mergeHead;
         if (head1.val < head2.val) {
             mergeHead = head1;
             mergeHead.next = mergeSortedListRec(head1.next, head2);
@@ -276,13 +299,16 @@ public class LinkedList {
      * 时间复杂度为O（n）
      */
     public static boolean hasCycle(ListNode head) {
-        ListNode fast = head; // 快指针每次前进两步
-        ListNode slow = head; // 慢指针每次前进一步
+        // 快指针每次前进两步
+        ListNode fast = head;
+        // 慢指针每次前进一步
+        ListNode slow = head;
 
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
-            if (fast == slow) { // 相遇，存在环
+            if (fast == slow) {
+                // 相遇，存在环
                 return true;
             }
         }
@@ -389,7 +415,8 @@ public class LinkedList {
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if (slow == fast) { // Collision
+            if (slow == fast) {
+                // Collision
                 break;
             }
         }
@@ -416,11 +443,12 @@ public class LinkedList {
      * 以地址为哈希表的键值，每出现一个地址，就将该键值对应的实值置为true。
      */
     public static ListNode getFirstListNodeInCycleHashMap(ListNode head) {
-        HashMap<ListNode, Boolean> map = new HashMap<ListNode, Boolean>();
+        HashMap<ListNode, Boolean> map = new HashMap<>(32);
         ListNode res = head;
         while (res != null) {
             if (map.get(res) != null) {
-                return res;              // 这个地址之前已经出现过了，就是环的开始处
+                // 这个地址之前已经出现过了，就是环的开始处
+                return res;
             } else {
                 map.put(res, true);
                 res = res.next;
@@ -438,15 +466,20 @@ public class LinkedList {
         if (head == null || toDelete == null) {
             return head;
         }
-        if (toDelete.next != null) {                    // 要删除的是一个中间节点
-            toDelete.val = toDelete.next.val;           // 将下一个节点的数据复制到本节点!
+        // 要删除的是一个中间节点
+        if (toDelete.next != null) {
+            // 将下一个节点的数据复制到本节点!
+            toDelete.val = toDelete.next.val;
             toDelete.next = toDelete.next.next;
-        } else {                                        // 要删除的是最后一个节点！
-            if (head == toDelete) {                     // 链表中只有一个节点的情况
+        } else {
+            // 要删除的是最后一个节点！
+            if (head == toDelete) {
+                // 链表中只有一个节点的情况
                 head = null;
             } else {
                 ListNode listNode = head;
-                while (listNode.next != toDelete) {     // 找到倒数第二个节点
+                while (listNode.next != toDelete) {
+                    // 找到倒数第二个节点
                     listNode = listNode.next;
                 }
                 listNode.next = null;

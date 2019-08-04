@@ -20,7 +20,9 @@ import java.util.*;
  * 13. 由前序遍历序列和中序遍历序列重建二叉树：rebuildBinaryTreeRec
  * 14.判断二叉树是不是完全二叉树：isCompleteBinaryTree, isCompleteBinaryTreeRec
  * <p>
- * Created by jiaxiong on 2019-03-28 13:19
+ *
+ * @author jiaxiong
+ * @date 2019-03-28 13:19
  */
 
 public class BinaryTree {
@@ -53,16 +55,19 @@ public class BinaryTree {
             return 0;
         }
         int count = 1;
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            TreeNode cur = queue.remove();        // 从队头位置移除
-            if (cur.left != null) {               // 如果有左孩子，加到队尾
+            // 从队头位置移除
+            TreeNode cur = queue.remove();
+            if (cur.left != null) {
+                // 如果有左孩子，加到队尾
                 queue.add(cur.left);
                 count++;
             }
-            if (cur.right != null) {              // 如果有右孩子，加到队尾
+            if (cur.right != null) {
+                // 如果有右孩子，加到队尾
                 queue.add(cur.right);
                 count++;
             }
@@ -93,27 +98,38 @@ public class BinaryTree {
             return 0;
         }
 
-        int depth = 0;                            // 深度
-        int currentLevelNodes = 1;                // 当前Level，node的数量
-        int nextLevelNodes = 0;                   // 下一层Level，node的数量
+        // 深度
+        int depth = 0;
+        // 当前Level，node的数量
+        int currentLevelNodes = 1;
+        // 下一层Level，node的数量
+        int nextLevelNodes = 0;
 
-        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            TreeNode cur = queue.remove();        // 从队头位置移除
-            currentLevelNodes--;                  // 减少当前Level node的数量
-            if (cur.left != null) {               // 如果有左孩子，加到队尾
+            // 从队头位置移除
+            TreeNode cur = queue.remove();
+            // 减少当前Level node的数量
+            currentLevelNodes--;
+            if (cur.left != null) {
+                // 如果有左孩子，加到队尾
                 queue.add(cur.left);
-                nextLevelNodes++;                 // 并增加下一层Level node的数量
-            } else if (cur.right != null) {       // 如果有右孩子，加到队尾
+                // 并增加下一层Level node的数量
+                nextLevelNodes++;
+            } else if (cur.right != null) {
+                // 如果有右孩子，加到队尾
                 queue.add(cur.right);
                 nextLevelNodes++;
             }
 
-            if (currentLevelNodes == 0) {          // 说明已经遍历完当前层的所有节点
-                depth++;                           // 增加高度
-                currentLevelNodes = nextLevelNodes;// 初始化下一层的遍历
+            // 说明已经遍历完当前层的所有节点
+            if (currentLevelNodes == 0) {
+                // 增加高度
+                depth++;
+                // 初始化下一层的遍历
+                currentLevelNodes = nextLevelNodes;
                 nextLevelNodes = 0;
             }
         }
@@ -144,11 +160,13 @@ public class BinaryTree {
             return;
         }
 
-        Stack<TreeNode> stack = new Stack<TreeNode>();        // 辅助stack
+        // 辅助stack
+        Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
 
         while (!stack.isEmpty()) {
-            TreeNode cur = stack.pop();                // 出栈栈顶元素
+            // 出栈栈顶元素
+            TreeNode cur = stack.pop();
             System.out.print(cur.val + " ");
             // 要先压入右孩子，再压入左孩子，这样在出栈时会先打印左孩子再打印右孩子
             if (cur.right != null) {
@@ -183,7 +201,7 @@ public class BinaryTree {
         if (root == null) {
             return;
         }
-        Stack<TreeNode> stack = new Stack<TreeNode>();
+        Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
 
         while (true) {
@@ -198,7 +216,8 @@ public class BinaryTree {
             // 因为此时已经没有左孩子了，所以输出栈顶元素
             cur = stack.pop();
             System.out.print(cur.val + " ");
-            cur = cur.right;             // 准备处理右子树
+            // 准备处理右子树
+            cur = cur.right;
         }
     }
 
@@ -221,8 +240,9 @@ public class BinaryTree {
             } else {
                 /* Find the inorder predecessor of current */
                 pre = current.left;
-                while (pre.right != null && pre.right != current)
+                while (pre.right != null && pre.right != current) {
                     pre = pre.right;
+                }
 
                 /* Make current as right child of its inorder predecessor */
                 if (pre.right == null) {
@@ -264,21 +284,27 @@ public class BinaryTree {
             return;
         }
 
-        Stack<TreeNode> s = new Stack<TreeNode>();        // 第一个stack用于添加node和它的左右孩子
-        Stack<TreeNode> output = new Stack<TreeNode>();   // 第二个stack用于翻转第一个stack输出
+        // 第一个stack用于添加node和它的左右孩子
+        Stack<TreeNode> s = new Stack<>();
+        // 第二个stack用于翻转第一个stack输出
+        Stack<TreeNode> output = new Stack<>();
 
         s.push(root);
-        while (!s.isEmpty()) {         // 确保所有元素都被翻转转移到第二个stack
-            TreeNode cur = s.pop();    // 把栈顶元素添加到第二个stack
+        while (!s.isEmpty()) {
+            // 确保所有元素都被翻转转移到第二个stack
+            TreeNode cur = s.pop();
+            // 把栈顶元素添加到第二个stack
             output.push(cur);
-            if (cur.left != null) {    // 把栈顶元素的左孩子和右孩子分别添加入第一个stack
+            if (cur.left != null) {
+                // 把栈顶元素的左孩子和右孩子分别添加入第一个stack
                 s.push(cur.left);
             }
             if (cur.right != null) {
                 s.push(cur.right);
             }
         }
-        while (!output.isEmpty()) {    // 遍历输出第二个stack，即为后序遍历
+        while (!output.isEmpty()) {
+            // 遍历输出第二个stack，即为后序遍历
             System.out.print(output.pop().val + " ");
         }
     }
@@ -292,7 +318,7 @@ public class BinaryTree {
         if (root == null) {
             return;
         }
-        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
         queue.push(root);
 
         while (!queue.isEmpty()) {
@@ -317,7 +343,7 @@ public class BinaryTree {
      * http://discuss.leetcode.com/questions/49/binary-tree-level-order-traversal#answer-container-2543
      */
     public static void levelTraversalRec(TreeNode root) {
-        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
         dfs(root, 0, ret);
         System.out.println(ret);
     }
@@ -328,11 +354,13 @@ public class BinaryTree {
         }
         // 添加一个新的ArrayList表示新的一层
         if (level >= ret.size()) {
-            ret.add(new ArrayList<Integer>());
+            ret.add(new ArrayList<>());
         }
 
-        ret.get(level).add(root.val);                // 把节点添加到表示那一层的ArrayList里
-        dfs(root.left, level + 1, ret);        // 递归处理下一层的左子树和右子树
+        // 把节点添加到表示那一层的ArrayList里
+        ret.get(level).add(root.val);
+        // 递归处理下一层的左子树和右子树
+        dfs(root.left, level + 1, ret);
         dfs(root.right, level + 1, ret);
     }
 
@@ -360,21 +388,27 @@ public class BinaryTree {
             return root;
         }
 
-        TreeNode tmp = null;
-        if (root.left != null) {            // 处理左子树
+        TreeNode tmp;
+        // 处理左子树
+        if (root.left != null) {
             tmp = convertBST2DLLSubRec(root.left);
-            while (tmp.right != null) {    // 寻找最右节点
+            // 寻找最右节点
+            while (tmp.right != null) {
                 tmp = tmp.right;
             }
-            tmp.right = root;        // 把左子树处理后结果和root连接
+            // 把左子树处理后结果和root连接
+            tmp.right = root;
             root.left = tmp;
         }
-        if (root.right != null) {        // 处理右子树
+        // 处理右子树
+        if (root.right != null) {
             tmp = convertBST2DLLSubRec(root.right);
-            while (tmp.left != null) {    // 寻找最左节点
+            // 寻找最左节点
+            while (tmp.left != null) {
                 tmp = tmp.left;
             }
-            tmp.left = root;        // 把右子树处理后结果和root连接
+            // 把右子树处理后结果和root连接
+            tmp.left = root;
             root.right = tmp;
         }
         return root;
@@ -388,13 +422,17 @@ public class BinaryTree {
         if (root == null) {
             return null;
         }
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        TreeNode cur = root;        // 指向当前处理节点
-        TreeNode old = null;        // 指向前一个处理的节点
-        TreeNode head = null;       // 链表头
+        Stack<TreeNode> stack = new Stack<>();
+        // 指向当前处理节点
+        TreeNode cur = root;
+        // 指向前一个处理的节点
+        TreeNode old = null;
+        // 链表头
+        TreeNode head = null;
 
         while (true) {
-            while (cur != null) {   // 先添加一个非空节点所有的左孩子到栈
+            // 先添加一个非空节点所有的左孩子到栈
+            while (cur != null) {
                 stack.push(cur);
                 cur = cur.left;
             }
@@ -408,12 +446,15 @@ public class BinaryTree {
             if (old != null) {
                 old.right = cur;
             }
-            if (head == null) {     // 第一个节点为双向链表头节点
+            // 第一个节点为双向链表头节点
+            if (head == null) {
                 head = cur;
             }
 
-            old = cur;              // 更新old
-            cur = cur.right;        // 准备处理右子树
+            // 更新old
+            old = cur;
+            // 准备处理右子树
+            cur = cur.right;
         }
 
         return head;
@@ -434,12 +475,13 @@ public class BinaryTree {
         if (root == null || k < 1) {
             return 0;
         }
-
         if (k == 1) {
             return 1;
         }
-        int numLeft = getNodeNumKthLevelRec(root.left, k - 1);        // 求root左子树的k-1层节点数
-        int numRight = getNodeNumKthLevelRec(root.right, k - 1);      // 求root右子树的k-1层节点数
+        // 求root左子树的k-1层节点数
+        int numLeft = getNodeNumKthLevelRec(root.left, k - 1);
+        // 求root右子树的k-1层节点数
+        int numRight = getNodeNumKthLevelRec(root.right, k - 1);
         return numLeft + numRight;
     }
 
@@ -451,29 +493,39 @@ public class BinaryTree {
         if (root == null) {
             return 0;
         }
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         int i = 1;
-        int currentLevelNodes = 1;                      // 当前Level，node的数量
-        int nextLevelNodes = 0;                         // 下一层Level，node的数量
+        // 当前Level，node的数量
+        int currentLevelNodes = 1;
+        // 下一层Level，node的数量
+        int nextLevelNodes = 0;
 
         while (!queue.isEmpty() && i < k) {
-            TreeNode cur = queue.remove();              // 从队头位置移除
-            currentLevelNodes--;                        // 减少当前Level node的数量
-            if (cur.left != null) {                     // 如果有左孩子，加到队尾
+            // 从队头位置移除
+            TreeNode cur = queue.remove();
+            // 减少当前Level node的数量
+            currentLevelNodes--;
+            // 如果有左孩子，加到队尾
+            if (cur.left != null) {
                 queue.add(cur.left);
-                nextLevelNodes++;                       // 并增加下一层Level node的数量
+                // 并增加下一层Level node的数量
+                nextLevelNodes++;
             }
-            if (cur.right != null) {                    // 如果有右孩子，加到队尾
+            // 如果有右孩子，加到队尾
+            if (cur.right != null) {
                 queue.add(cur.right);
                 nextLevelNodes++;
             }
 
-            if (currentLevelNodes == 0) {               // 说明已经遍历完当前层的所有节点
-                currentLevelNodes = nextLevelNodes;     // 初始化下一层的遍历
+            // 说明已经遍历完当前层的所有节点
+            if (currentLevelNodes == 0) {
+                // 初始化下一层的遍历
+                currentLevelNodes = nextLevelNodes;
                 nextLevelNodes = 0;
-                i++;                                    // 进入到下一层
+                // 进入到下一层
+                i++;
             }
         }
 
@@ -504,20 +556,25 @@ public class BinaryTree {
         if (root == null) {
             return 0;
         }
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
-        int leafNodes = 0;                    // 记录上一个Level，node的数量
+        // 记录上一个Level，node的数量
+        int leafNodes = 0;
 
         while (!queue.isEmpty()) {
-            TreeNode cur = queue.remove();    // 从队头位置移除
-            if (cur.left != null) {           // 如果有左孩子，加到队尾
+            // 从队头位置移除
+            TreeNode cur = queue.remove();
+            // 如果有左孩子，加到队尾
+            if (cur.left != null) {
                 queue.add(cur.left);
             }
-            if (cur.right != null) {         // 如果有右孩子，加到队尾
+            // 如果有右孩子，加到队尾
+            if (cur.right != null) {
                 queue.add(cur.right);
             }
-            if (cur.left == null && cur.right == null) {  // 叶子节点
+            // 叶子节点
+            if (cur.left == null && cur.right == null) {
                 leafNodes++;
             }
         }
@@ -545,8 +602,10 @@ public class BinaryTree {
         if (r1.val != r2.val) {
             return false;
         }
-        boolean leftRes = isSameRec(r1.left, r2.left);        // 比较对应左子树
-        boolean rightRes = isSameRec(r1.right, r2.right);     // 比较对应右子树
+        // 比较对应左子树
+        boolean leftRes = isSameRec(r1.left, r2.left);
+        // 比较对应右子树
+        boolean rightRes = isSameRec(r1.right, r2.right);
         return leftRes && rightRes;
     }
 
@@ -565,8 +624,8 @@ public class BinaryTree {
             return false;
         }
 
-        Stack<TreeNode> s1 = new Stack<TreeNode>();
-        Stack<TreeNode> s2 = new Stack<TreeNode>();
+        Stack<TreeNode> s1 = new Stack<>();
+        Stack<TreeNode> s2 = new Stack<>();
 
         s1.push(r1);
         s2.push(r2);
@@ -611,35 +670,33 @@ public class BinaryTree {
      * 求二叉树的镜像 递归解法：
      * 1）如果二叉树为空，返回空
      * 2）如果二叉树不为空，求左子树和右子树的镜像，然后交换左子树和右子树
+     * 1. 破坏原来的树，把原来的树改成其镜像
      */
-    // 1. 破坏原来的树，把原来的树改成其镜像
     public static TreeNode mirrorRec(TreeNode root) {
         if (root == null) {
             return null;
         }
-
-        TreeNode left = mirrorRec(root.left);
-        TreeNode right = mirrorRec(root.right);
-
-        root.left = right;
-        root.right = left;
+        root.left = mirrorRec(root.right);
+        root.right = mirrorRec(root.left);
         return root;
     }
 
-    // 2. 不能破坏原来的树，返回一个新的镜像树
+    /**
+     * 2. 不能破坏原来的树，返回一个新的镜像树
+     */
     public static TreeNode mirrorCopyRec(TreeNode root) {
         if (root == null) {
             return null;
         }
-
         TreeNode newNode = new TreeNode(root.val);
         newNode.left = mirrorCopyRec(root.right);
         newNode.right = mirrorCopyRec(root.left);
-
         return newNode;
     }
 
-    // 3. 判断两个树是否互相镜像
+    /**
+     * 3. 判断两个树是否互相镜像
+     */
     public static boolean isMirrorRec(TreeNode r1, TreeNode r2) {
         // 如果两个树都是空树，则返回true
         if (r1 == null && r2 == null) {
@@ -658,13 +715,15 @@ public class BinaryTree {
         return isMirrorRec(r1.left, r2.right) && isMirrorRec(r1.right, r2.left);
     }
 
-    // 1. 破坏原来的树，把原来的树改成其镜像
+    /**
+     * 1. 破坏原来的树，把原来的树改成其镜像
+     */
     public static void mirror(TreeNode root) {
         if (root == null) {
             return;
         }
 
-        Stack<TreeNode> stack = new Stack<TreeNode>();
+        Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()) {
             TreeNode cur = stack.pop();
@@ -683,14 +742,16 @@ public class BinaryTree {
         }
     }
 
-    // 2. 不能破坏原来的树，返回一个新的镜像树
+    /**
+     * 2. 不能破坏原来的树，返回一个新的镜像树
+     */
     public static TreeNode mirrorCopy(TreeNode root) {
         if (root == null) {
             return null;
         }
 
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        Stack<TreeNode> newStack = new Stack<TreeNode>();
+        Stack<TreeNode> stack = new Stack<>();
+        Stack<TreeNode> newStack = new Stack<>();
         stack.push(root);
         TreeNode newRoot = new TreeNode(root.val);
         newStack.push(newRoot);
@@ -722,22 +783,31 @@ public class BinaryTree {
      * 2）如果两个节点都在左子树，则递归处理左子树；如果两个节点都在右子树，则递归处理右子树
      */
     public static TreeNode getLastCommonParentRec(TreeNode root, TreeNode n1, TreeNode n2) {
-        if (findNodeRec(root.left, n1)) {           // 如果n1在树的左子树
-            if (findNodeRec(root.right, n2)) {      // 如果n2在树的右子树
-                return root;                        // 返回根节点
-            } else {                                // 如果n2也在树的左子树
-                return getLastCommonParentRec(root.left, n1, n2); // 递归处理
-            }
-        } else {    // 如果n1在树的右子树
-            if (findNodeRec(root.left, n2)) {       // 如果n2在左子树
+        // 如果n1在树的左子树
+        if (findNodeRec(root.left, n1)) {
+            // 如果n2在树的右子树
+            if (findNodeRec(root.right, n2)) {
+                // 返回根节点
                 return root;
-            } else {                               // 如果n2在右子树
-                return getLastCommonParentRec(root.right, n1, n2); // 递归处理
+            } else {
+                // 如果n2也在树的左子树，递归处理
+                return getLastCommonParentRec(root.left, n1, n2);
+            }
+        } else {
+            // 如果n1在树的右子树
+            if (findNodeRec(root.left, n2)) {
+                // 如果n2在左子树
+                return root;
+            } else {
+                // 如果n2在右子树，递归处理
+                return getLastCommonParentRec(root.right, n1, n2);
             }
         }
     }
 
-    // 帮助方法，递归判断一个点是否在树里
+    /**
+     * 帮助方法，递归判断一个点是否在树里
+     */
     private static boolean findNodeRec(TreeNode root, TreeNode node) {
         if (root == null || node == null) {
             return false;
@@ -747,13 +817,16 @@ public class BinaryTree {
         }
         // 先尝试在左子树中查找
         boolean found = findNodeRec(root.left, node);
-        if (!found) {        // 如果查找不到，再在右子树中查找
+        if (!found) {
+            // 如果查找不到，再在右子树中查找
             found = findNodeRec(root.right, node);
         }
         return found;
     }
 
-    // 求二叉树中两个节点的最低公共祖先节点 （更加简洁版的递归）
+    /**
+     * 求二叉树中两个节点的最低公共祖先节点 （更加简洁版的递归
+     */
     public static TreeNode getLastCommonParentRec2(TreeNode root, TreeNode n1, TreeNode n2) {
         if (root == null) {
             return null;
@@ -784,9 +857,9 @@ public class BinaryTree {
             return null;
         }
 
-        ArrayList<TreeNode> p1 = new ArrayList<TreeNode>();
+        ArrayList<TreeNode> p1 = new ArrayList<>();
         boolean res1 = getNodePath(root, n1, p1);
-        ArrayList<TreeNode> p2 = new ArrayList<TreeNode>();
+        ArrayList<TreeNode> p2 = new ArrayList<>();
         boolean res2 = getNodePath(root, n2, p2);
 
         if (!res1 || !res2) {
@@ -802,14 +875,17 @@ public class BinaryTree {
             TreeNode tmp2 = iter2.next();
             if (tmp1 == tmp2) {
                 last = tmp1;
-            } else { // 直到遇到非公共节点
+            } else {
+                // 直到遇到非公共节点
                 break;
             }
         }
         return last;
     }
 
-    // 把从根节点到node路径上所有的点都添加到path中
+    /**
+     * 把从根节点到node路径上所有的点都添加到path中
+     */
     private static boolean getNodePath(TreeNode root, TreeNode node, ArrayList<TreeNode> path) {
         if (root == null) {
             return false;
@@ -820,7 +896,7 @@ public class BinaryTree {
             return true;
         }
 
-        boolean found = false;
+        boolean found;
         // 先在左子树中找
         found = getNodePath(root.left, node, path);
         // 如果没找到，再在右子树找
@@ -852,8 +928,7 @@ public class BinaryTree {
     public static Result getMaxDistanceRec(TreeNode root) {
         if (root == null) {
             // 目的是让调用方 +1 后，把当前的不存在的 (NULL) 子树当成最大深度为 0
-            Result empty = new Result(0, -1);
-            return empty;
+            return new Result(0, -1);
         }
 
         // 计算出左右子树分别最大距离
@@ -921,7 +996,7 @@ public class BinaryTree {
             return false;
         }
 
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         boolean mustHaveNoChild = false;
         boolean result = true;
@@ -968,12 +1043,16 @@ public class BinaryTree {
         return isCompleteBinaryTreeSubRec(root).height != -1;
     }
 
-    // 递归判断是否满树
+    /**
+     * 递归判断是否满树
+     */
     public static boolean isPerfectBinaryTreeRec(TreeNode root) {
         return isCompleteBinaryTreeSubRec(root).isFull;
     }
 
-    // 递归，要创建一个Pair class来保存树的高度和是否已满的信息
+    /**
+     * 递归，要创建一个Pair class来保存树的高度和是否已满的信息
+     */
     public static Pair isCompleteBinaryTreeSubRec(TreeNode root) {
         if (root == null) {
             return new Pair(0, true);

@@ -7,9 +7,15 @@ import java.util.regex.Pattern;
  * 判断一个ip是否合法
  * ip地址范围：(1~255).(0~255).(0~255).(0~255)
  * <p>
- * Created by jiaxiong on 2019-04-10 10:16
+ *
+ * @author jiaxiong
+ * @date 2019-04-10 10:16
  */
 public class IsIpLegal {
+
+    private static final int IP_MIN_LENGTH = 7;
+    private static final int IP_MAX_LENGTH = 15;
+    private static final char IP_SEPARATOR = '.';
 
     public static boolean isIpLegal(String str) {
         //1.检查ip是否为空
@@ -18,12 +24,12 @@ public class IsIpLegal {
         }
 
         //2.检查ip长度，最短为：x.x.x.x(7位)，最长为：xxx.xxx.xxx.xxx(15位)
-        if (str.length() < 7 || str.length() > 15) {
+        if (str.length() < IP_MIN_LENGTH || str.length() > IP_MAX_LENGTH) {
             return false;
         }
 
         //3.输入字符串的首末字符是"."，则是非法IP
-        if (str.charAt(0) == '.' || str.charAt(str.length() - 1) == '.') {
+        if (str.charAt(0) == IP_SEPARATOR || str.charAt(str.length() - 1) == IP_SEPARATOR) {
             return false;
         }
 
@@ -65,7 +71,9 @@ public class IsIpLegal {
         return true;
     }
 
-    // 正则表达式判断
+    /**
+     * 正则表达式判断
+     */
     public static boolean isIpLegalReg(String ipStr) {
 
         String ipRegEx = "^([1-9]|([1-9][0-9])|(1[0-9][0-9])|(2[0-4][0-9])|(25[0-5]))" +
